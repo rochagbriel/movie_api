@@ -31,3 +31,20 @@ Timestamp: Thu Apr 06 2023 17:32:37 GMT+0200 (Central European Summer Time)
 URL: /favicon.ico
 Timestamp: Thu Apr 06 2023 17:32:38 GMT+0200 (Central European Summer Time)
 
+::1 - - [12/Apr/2023:13:15:45 +0000] "GET / HTTP/1.1" 304 - "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"
+::1 - - [12/Apr/2023:13:16:06 +0000] "GET /movies HTTP/1.1" 304 - "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"
+::1 - - [12/Apr/2023:13:16:32 +0000] "GET /documentation.html/ HTTP/1.1" 404 158 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"
+::1 - - [12/Apr/2023:13:18:24 +0000] "GET /documentation.html/ HTTP/1.1" 404 158 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"
+::1 - - [12/Apr/2023:13:18:28 +0000] "GET /documentation.html/ HTTP/1.1" 404 158 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"
+::1 - - [12/Apr/2023:13:18:35 +0000] "GET / HTTP/1.1" 304 - "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"
+::1 - - [12/Apr/2023:13:19:06 +0000] "GET /documentation.html/ HTTP/1.1" 404 158 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"
+::1 - - [12/Apr/2023:13:19:29 +0000] "GET / HTTP/1.1" 200 18 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"
+::1 - - [12/Apr/2023:13:20:00 +0000] "GET /documentation.html HTTP/1.1" 200 368 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"
+::1 - - [12/Apr/2023:13:20:13 +0000] "GET /documentation.html/ HTTP/1.1" 404 158 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"
+::1 - - [12/Apr/2023:13:20:16 +0000] "GET /documentation.html/ HTTP/1.1" 404 158 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"
+::1 - - [12/Apr/2023:13:20:22 +0000] "GET /documentation.html HTTP/1.1" 304 - "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"
+::1 - - [12/Apr/2023:13:21:06 +0000] "GET / HTTP/1.1" 304 - "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"
+::1 - - [12/Apr/2023:13:21:27 +0000] "GET /documentation.html HTTP/1.1" 304 - "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"
+::1 - - [12/Apr/2023:13:42:14 +0000] "GET /documentation.html HTTP/1.1" 304 - "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"
+::1 - - [12/Apr/2023:13:42:20 +0000] "GET / HTTP/1.1" 304 - "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"
+::1 - - [12/Apr/2023:13:42:27 +0000] "GET /movies HTTP/1.1" 200 286 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"
