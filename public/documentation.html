@@ -9,5 +9,151 @@
             The "MyFlix" application is a web app that provides users with
             access to information about different movies, directors, and genres.
         </p>
+        ---------------------
+        <h2>Endpoints</h2>
+
+        <h3>Return a list of ALL movies to the user</h3>
+        <h4>Description:</h4>
+        <p>This endpoint returns a list of all available movies.</p>
+        <h4>URL:</h4>
+        <p>"/movies"</p>
+        <h4>Method Type:</h4>
+        <p>GET</p>
+        <h4>Query Parameters(URL):</h4>
+        <p>None</p>
+        <h4>Request data format:</h4>
+        <p>JSON Object</p>
+        <h4>Response data format:</h4>
+        <p>JSON Object</p>
+
+        ---------------------
+
+        <h3>Get data about a specific movie by title</h3>
+        <h4>Description:</h4>
+        <p>This endpoint returns information about a specific movie, based on its title.</p>
+        <h4>URL:</h4>
+        <p>"/movies/:title"</p>
+        <h4>Method Type:</h4>
+        <p>GET</p>
+        <h4>Query Parameters(URL):</h4>
+        <p>title</p>
+        <h4>Request data format:</h4>
+        <p>JSON Object</p>
+        <h4>Response data format:</h4>
+        <p>JSON Object</p>
+
+        ---------------------
+
+        <h3>Get data about a genre by name</h3>
+        <h4>Description:</h4>
+        <p>This endpoint returns information about a specific genre, based on its name.</p>
+        <h4>URL:</h4>
+        <p>"/movies/genre/:genreName"</p>
+        <h4>Method Type:</h4>
+        <p>GET</p>
+        <h4>Query Parameters(URL):</h4>
+        <p>genreName</p>
+        <h4>Request data format:</h4>
+        <p>JSON Object</p>
+        <h4>Response data format:</h4>
+        <p>JSON Object</p>
+
+        ---------------------
+
+        <h3>Get data about a director by name</h3>
+        <h4>Description:</h4>
+        <p>This endpoint returns information about a specific director, based on their name.</p>
+        <h4>URL:</h4>
+        <p>"/movies/directors/:directorName"</p>
+        <h4>Method Type:</h4>
+        <p>GET</p>
+        <h4>Query Parameters(URL):</h4>
+        <p>directorName</p>
+        <h4>Request data format:</h4>
+        <p>JSON Object</p>
+        <h4>Response data format:</h4>
+        <p>JSON Object</p>
+
+        ---------------------
+
+        <h3>Allow New Users to Register</h3>
+        <h4>Description:</h4>
+        <p>Register a new user account.</p>
+        <h4>URL:</h4>
+        <p>"/users"</p>
+        <h4>Method Type:</h4>
+        <p>POST</p>
+        <h4>Query Parameters(URL):</h4>
+        <p>None</p>
+        <h4>Request data format:</h4>
+        <p>JSON Object including a 'name:' key </p>
+        <h4>Response data format:</h4>
+        <p>Returns a JSON object with a success message and the ID of the newly created user.</p>
+
+        ---------------------
+
+        <h3>Allow Users to Update Their User Info</h3>
+        <h4>Description:</h4>
+        <p>Update a user's data.</p>
+        <h4>URL:</h4>
+        <p>"/users/:id"</p>
+        <h4>Method Type:</h4>
+        <p>PUT</p>
+        <h4>Query Parameters(URL):</h4>
+        <p>id</p>
+        <h4>Request data format:</h4>
+        <p>JSON Object including a key you want to change</p>
+        <h4>Response data format:</h4>
+        <p>Returns a JSON object with a success message.</p>
+
+        ---------------------
+
+        <h3>Allow Users to Add a Movie to Their List of Favorites</h3>
+        <h4>Description:</h4>
+        <p>Add a movie to a user's list of favorites.</p>
+        <h4>URL:</h4>
+        <p>"/users/:id/:movieTitle"</p>
+        <h4>Method Type:</h4>
+        <p>POST</p>
+        <h4>Query Parameters(URL):</h4>
+        <p>id and movieTitle</p>
+        <h4>Request data format:</h4>
+        <p>id/movieTitle</p>
+        <h4>Response data format:</h4>
+        <p>Returns a JSON object with a success message.</p>
+
+        ---------------------
+
+        <h3>Allow Users to Remove a Movie from Their List of Favorites</h3>
+        <h4>Description:</h4>
+        <p>Remove a movie from a user's list of favorites.</p>
+        <h4>URL:</h4>
+        <p>"/users/:id/:movieTitle"</p>
+        <h4>Method Type:</h4>
+        <p>DELETE</p>
+        <h4>Query Parameters(URL):</h4>
+        <p>id and movieTitle</p>
+        <h4>Request data format:</h4>
+        <p>id/movieTitle</p>
+        <h4>Response data format:</h4>
+        <p>Returns a JSON object with a success message.</p>
+
+        ---------------------
+
+        <h3>Allow Existing Users to Deregister</h3>
+        <h4>Description:</h4>
+        <p>Delete an existing user account.</p>
+        <h4>URL:</h4>
+        <p>"/users/:id"</p>
+        <h4>Method Type:</h4>
+        <p>DELETE</p>
+        <h4>Query Parameters(URL):</h4>
+        <p>id</p>
+        <h4>Request data format:</h4>
+        <p>id</p>
+        <h4>Response data format:</h4>
+        <p>Returns a success message.</p>
+
+
     </body>
 </html>
