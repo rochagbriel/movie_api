@@ -24,7 +24,13 @@
         <h4>Request data format:</h4>
         <p>JSON Object</p>
         <h4>Response data format:</h4>
-        <p>JSON Object</p>
+        <ul>
+            <li>ID: Integer</li>
+            <li>Username: String</li>
+            <li>Password: String</li>
+            <li>Email: String</li>
+            <li>Birthday: Date</li>
+        </ul>
 
         ---------------------
 
@@ -48,7 +54,7 @@
         <h4>Description:</h4>
         <p>This endpoint returns information about a specific genre, based on its name.</p>
         <h4>URL:</h4>
-        <p>"/movies/genre/:genreName"</p>
+        <p>"/movies/genre/:GenreName"</p>
         <h4>Method Type:</h4>
         <p>GET</p>
         <h4>Query Parameters(URL):</h4>
@@ -64,7 +70,7 @@
         <h4>Description:</h4>
         <p>This endpoint returns information about a specific director, based on their name.</p>
         <h4>URL:</h4>
-        <p>"/movies/directors/:directorName"</p>
+        <p>"/movies/directors/:DirectorName"</p>
         <h4>Method Type:</h4>
         <p>GET</p>
         <h4>Query Parameters(URL):</h4>
@@ -86,7 +92,12 @@
         <h4>Query Parameters(URL):</h4>
         <p>None</p>
         <h4>Request data format:</h4>
-        <p>JSON Object including a 'name:' key </p>
+        <ul>
+            <li>Username: String(required)</li>
+            <li>Password: String(required)</li>
+            <li>Email: String(required)</li>
+            <li>Birthday: Date(required)</li>
+        </ul>
         <h4>Response data format:</h4>
         <p>Returns a JSON object with a success message and the ID of the newly created user.</p>
 
@@ -103,6 +114,8 @@
         <p>id</p>
         <h4>Request data format:</h4>
         <p>JSON Object including a key you want to change</p>
+        <p>Sample:</p>
+        <p>{ Username: 'New User Name' }</p>
         <h4>Response data format:</h4>
         <p>Returns a JSON object with a success message.</p>
 
@@ -112,7 +125,7 @@
         <h4>Description:</h4>
         <p>Add a movie to a user's list of favorites.</p>
         <h4>URL:</h4>
-        <p>"/users/:id/:movieTitle"</p>
+        <p>"/users/:id/movies/:MovieId"</p>
         <h4>Method Type:</h4>
         <p>POST</p>
         <h4>Query Parameters(URL):</h4>
@@ -128,7 +141,7 @@
         <h4>Description:</h4>
         <p>Remove a movie from a user's list of favorites.</p>
         <h4>URL:</h4>
-        <p>"/users/:id/:movieTitle"</p>
+        <p>"/users/:id/:MovieId"</p>
         <h4>Method Type:</h4>
         <p>DELETE</p>
         <h4>Query Parameters(URL):</h4>
