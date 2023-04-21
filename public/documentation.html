@@ -24,13 +24,25 @@
         <h4>Request data format:</h4>
         <p>JSON Object</p>
         <h4>Response data format:</h4>
-        <ul>
-            <li>ID: Integer</li>
-            <li>Username: String</li>
-            <li>Password: String</li>
-            <li>Email: String</li>
-            <li>Birthday: Date</li>
-        </ul>
+        <p>SAMPLE:<br>
+            <br>
+            "Genre": {<br>
+                "Name": "Drama",<br>
+                "Description": "Drama is a category or genre of narrative fiction (or semi-fiction) intended to be more serious than humorous in tone."<br>
+            },<br>
+            "Director": {<br>
+                "Name": "Jonathan Demme",<br>
+                "Bio": "Updated Director Bio",<br>
+                "Birth": "1944",<br>
+                "Death": "2017"<br>
+            },<br>
+            "Actors": [],<br>
+            "_id": "643d4c7abe406410ca35304e",<br>
+            "Title": "Philadelphia",<br>
+            "Description": "Updated Description Philadelphia",<br>
+            "ImagePath": "philadelphia.png",<br>
+            "Featured": false<br>
+        },</p>
 
         ---------------------
 
@@ -44,9 +56,27 @@
         <h4>Query Parameters(URL):</h4>
         <p>title</p>
         <h4>Request data format:</h4>
-        <p>JSON Object</p>
+        <p>SAMPLE: http://localhost:8080/movies/Forrest%20Gump</p>
         <h4>Response data format:</h4>
-        <p>JSON Object</p>
+        <p>SAMPLE:<br>
+            {<br>
+            "Genre": {<br>
+                "Name": "Drama",<br>
+                "Description": "Drama is a category or genre of narrative fiction (or semi-fiction) intended to be more serious than humorous in tone."<br>
+            },<br>
+            "Director": {<br>
+                "Name": "Robert Zemeckis",<br>
+                "Bio": "A whiz-kid with special effects.",<br>
+                "Birth": "1952",<br>
+                "Death": ""<br>
+            },<br>
+            "Actors": [],<br>
+            "_id": "643da1febe406410ca353051",<br>
+            "Title": "Forrest Gump",<br>
+            "Description": "The presidencies of Kennedy and Johnson, the Vietnam War, the Watergate scandal <br>and other historical events unfold from the perspective of an Alabama man with an IQ of 75, whose only desire is to be reunited with his childhood sweetheart.",<br>
+            "ImagePath": "forrestgump.png",<br>
+            "Featured": false<br>
+        }</p>
 
         ---------------------
 
@@ -60,9 +90,13 @@
         <h4>Query Parameters(URL):</h4>
         <p>genreName</p>
         <h4>Request data format:</h4>
-        <p>JSON Object</p>
+        <p>SAMPLE: http://localhost:8080/movies/genre/Drama</p>
         <h4>Response data format:</h4>
-        <p>JSON Object</p>
+        <p>SAMPLE:<br>
+            {<br>
+            "Name": "Drama",<br>
+            "Description": "Drama is a category or genre of narrative fiction (or semi-fiction) intended to be more serious than humorous in tone."<br>
+        }</p>
 
         ---------------------
 
@@ -76,9 +110,15 @@
         <h4>Query Parameters(URL):</h4>
         <p>directorName</p>
         <h4>Request data format:</h4>
-        <p>JSON Object</p>
+        <p>SAMPLE: http://localhost:8080/movies/directors/Jonathan%20Demme</p>
         <h4>Response data format:</h4>
-        <p>JSON Object</p>
+        <p>SAMPLE:<br>
+            {<br>
+            "Name": "Jonathan Demme",<br>
+            "Bio": "Updated Director Bio",<br>
+            "Birth": "1944",<br>
+            "Death": "2017"<br>
+        }</p>
 
         ---------------------
 
@@ -92,14 +132,26 @@
         <h4>Query Parameters(URL):</h4>
         <p>None</p>
         <h4>Request data format:</h4>
-        <ul>
-            <li>Username: String(required)</li>
-            <li>Password: String(required)</li>
-            <li>Email: String(required)</li>
-            <li>Birthday: Date(required)</li>
-        </ul>
+        <p> SAMPLE:<br>
+            {<br>
+                "Username": "testuser",<br>
+                "Password": "testpassword",<br>
+                "Email": "testuser@email.com",<br>
+                "Birthday": "09/02/53"<br>
+            }
+        </p>
         <h4>Response data format:</h4>
-        <p>Returns a JSON object with a success message and the ID of the newly created user.</p>
+        <p>SAMPLE:<br>
+            {<br>
+                "Username": "testuser",<br>
+                "Password": "testpassword",<br>
+                "Email": "testuser@email.com",<br>
+                "Birthday": "1953-09-02T00:00:00.000Z",<br>
+                "FavoriteMovies": [],<br>
+                "_id": "6443091a4ca183e11e04ae41",<br>
+                "__v": 0<br>
+            }
+        </p>
 
         ---------------------
 
@@ -117,7 +169,23 @@
         <p>Sample:</p>
         <p>{ Username: 'New User Name' }</p>
         <h4>Response data format:</h4>
-        <p>Returns a JSON object with a success message.</p>
+        <p>
+            Returns a JSON object with a success message.<br>
+            <br>
+            SAMPLE: <br>
+
+            {<br>
+                "_id": "6443091a4ca183e11e04ae41",<br>
+                "Username": "testuserUpdated1",<br>
+                "Password": "testpassword",<br>
+                "Email": "testuser@email.com",<br>
+                "Birthday": "1953-09-01T23:00:00.000Z",<br>
+                "FavoriteMovies": [<br>
+                    "643da1febe406410ca353051"<br>
+                ],<br>
+                "__v": 0<br>
+            }
+        </p>
 
         ---------------------
 
@@ -131,9 +199,24 @@
         <h4>Query Parameters(URL):</h4>
         <p>id and movieTitle</p>
         <h4>Request data format:</h4>
-        <p>id/movieTitle</p>
+        <p>SAMPLE: http://localhost:8080/users/6443091a4ca183e11e04ae41/movies/643d4c7abe406410ca35304e</p>
         <h4>Response data format:</h4>
-        <p>Returns a JSON object with a success message.</p>
+        <p>Returns a JSON object with a success message.<br>
+            <br>
+            SAMPLE:<br>
+            {<br>
+                "_id": "6443091a4ca183e11e04ae41",<br>
+                "Username": "testuserUpdated1",<br>
+                "Password": "testpassword",<br>
+                "Email": "testuser@email.com",<br>
+                "Birthday": "1953-09-01T23:00:00.000Z",<br>
+                "FavoriteMovies": [<br>
+                    "643da1febe406410ca353051",<br>
+                    "643d4c7abe406410ca35304e"<br>
+                ],<br>
+                "__v": 0<br>
+            }
+        </p>
 
         ---------------------
 
@@ -147,9 +230,23 @@
         <h4>Query Parameters(URL):</h4>
         <p>id and movieTitle</p>
         <h4>Request data format:</h4>
-        <p>id/movieTitle</p>
+        <p>SAMPLE: http://localhost:8080/users/6443091a4ca183e11e04ae41/643d4c7abe406410ca35304e</p>
         <h4>Response data format:</h4>
-        <p>Returns a JSON object with a success message.</p>
+        <p>Returns a JSON object with a success message.<br>
+            <br>
+            SAMPLE:<br>
+            {<br>
+                "_id": "6443091a4ca183e11e04ae41",<br>
+                "Username": "testuserUpdated1",<br>
+                "Password": "testpassword",<br>
+                "Email": "testuser@email.com",<br>
+                "Birthday": "1953-09-01T23:00:00.000Z",<br>
+                "FavoriteMovies": [<br>
+                    "643da1febe406410ca353051"<br>
+                ],<br>
+                "__v": 0<br>
+            }
+        </p>
 
         ---------------------
 
@@ -163,7 +260,7 @@
         <h4>Query Parameters(URL):</h4>
         <p>id</p>
         <h4>Request data format:</h4>
-        <p>id</p>
+        <p>SAMPLE: http://localhost:8080/users/6443091a4ca183e11e04ae41</p>
         <h4>Response data format:</h4>
         <p>Returns a success message.</p>
 
