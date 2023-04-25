@@ -12,7 +12,10 @@ const Models = require('./models.js');
 const Movies = Models.Movie;
 const Users = Models.User;
 
-mongoose.connect('mongodb://localhost:27017/cfDB', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://localhost:27017/cfDB', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+});
 
 const app = express();
 
@@ -57,25 +60,28 @@ app.post('/users', (req, res) => {
     Users.findOne({ Username: req.body.Username })
         .then((user) => {
             if (user) {
-                return res.status(400).setDefaultEncoding(req.body.Username + 'already exists');
+                return res
+                    .status(400)
+                    .setDefaultEncoding(req.body.Username + 'already exists');
             } else {
-                Users
-                    .create({
-                        Username: req.body.Username,
-                        Password: req.body.Password,
-                        Email: req.body.Email,
-                        Birthday: req.body.Birthday
+                Users.create({
+                    Username: req.body.Username,
+                    Password: req.body.Password,
+                    Email: req.body.Email,
+                    Birthday: req.body.Birthday,
+                })
+                    .then((user) => {
+                        res.status(201).json(user);
                     })
-                    .then((user) => { res.status(201).json(user) })
-                    .catch((error) => {
-                        console.error(error);
-                        res.status(500).send('Error: ' + error);
-                    })
+                    .catch((err) => {
+                        console.error(err);
+                        res.status(500).send('Error: ' + err);
+                    });
             }
         })
-        .catch((error) => {
-            console.error(error);
-            res.status(500).send('Error: ' + error);
+        .catch((err) => {
+            console.error(err);
+            res.status(500).send('Error: ' + err);
         });
 });
 
@@ -90,33 +96,40 @@ app.post('/users', (req, res) => {
   (required)
   Birthday: Date
 }*/
+
 app.put('/users/:id', (req, res) => {
-    Users.findOneAndUpdate({ _id: req.params.id }, { $set: 
+    Users.findOneAndUpdate(
+        { _id: req.params.id },
         {
-            Username: req.body.Username,
-            Password: req.body.Password,
-            Email: req.body.Email,
-            Birthday: req.body.Birthday
-        }
-    }, { new: true })
-    .then(updatedUser => {
-        res.json(updatedUser);
-    })
-    .catch(err => {
-        console.error(err);
-        res.status(500).send('Error: ' + err);
-    });
+            $set: {
+                Username: req.body.Username,
+                Password: req.body.Password,
+                Email: req.body.Email,
+                Birthday: req.body.Birthday,
+            },
+        },
+        { new: true }
+    )
+        .then((updatedUser) => {
+            res.json(updatedUser);
+        })
+        .catch((err) => {
+            console.error(err);
+            res.status(500).send('Error: ' + err);
+        });
 });
 
 // CREATE - Allow users to add a movie to their list of favorites (showing only a text that a movie has been added—more on this later);
 app.post('/users/:id/movies/:MovieId', (req, res) => {
-    Users.findOneAndUpdate({ _id: req.params.id }, 
+    Users.findOneAndUpdate(
+        { _id: req.params.id },
         { $push: { FavoriteMovies: req.params.MovieId } },
-        { new: true })
-        .then(updatedUser => {
+        { new: true }
+    )
+        .then((updatedUser) => {
             res.json(updatedUser);
         })
-        .catch(err => {
+        .catch((err) => {
             console.error(err);
             res.status(500).send('Error: ' + err);
         });
@@ -124,17 +137,20 @@ app.post('/users/:id/movies/:MovieId', (req, res) => {
 
 // DELETE - Allow users to remove a movie from their list of favorites (showing only a text that a movie has been removed);
 app.delete('/users/:id/:MovieId', (req, res) => {
-    Users.findOneAndUpdate({ _id: req.params.id }, {
-        $pull: { FavoriteMovies: req.params.MovieId }
-    },
-    { new: true })
-       .then((updatedUser) => {
-               res.json(updatedUser);
-           })
-       .catch((err) => {
+    Users.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+            $pull: { FavoriteMovies: req.params.MovieId },
+        },
+        { new: true }
+    )
+        .then((updatedUser) => {
+            res.json(updatedUser);
+        })
+        .catch((err) => {
             console.error(err);
             res.status(500).send('Error: ' + err);
-       });
+        });
 });
 
 // DELETE - Allow existing users to deregister (showing only a text that a user email has been removed—more on this later)
