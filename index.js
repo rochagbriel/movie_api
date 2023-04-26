@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 const express = require('express'),
-    uuid = require('uuid'),
     morgan = require('morgan'),
     fs = require('fs'),
     path = require('path');
@@ -21,12 +20,16 @@ const app = express();
 
 const bodyParser = require('body-parser'),
     methodOverride = require('method-override');
-const { constant, update } = require('lodash');
-const { title } = require('process');
 
+// Body Parser
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(bodyParser.json());
+let auth = require('./auth')(app);
+
+const passport = require('passport');
+require('./passport');
+
 app.use(methodOverride());
 
 // Error-handling Middleware function
@@ -62,7 +65,7 @@ app.post('/users', (req, res) => {
             if (user) {
                 return res
                     .status(400)
-                    .setDefaultEncoding(req.body.Username + 'already exists');
+                    .send(`The user "${req.body.Username}" already exists`);
             } else {
                 Users.create({
                     Username: req.body.Username,
@@ -97,7 +100,7 @@ app.post('/users', (req, res) => {
   Birthday: Date
 }*/
 
-app.put('/users/:id', (req, res) => {
+app.put('/users/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
     Users.findOneAndUpdate(
         { _id: req.params.id },
         {
@@ -120,7 +123,7 @@ app.put('/users/:id', (req, res) => {
 });
 
 // CREATE - Allow users to add a movie to their list of favorites (showing only a text that a movie has been added—more on this later);
-app.post('/users/:id/movies/:MovieId', (req, res) => {
+app.post('/users/:id/movies/:MovieId', passport.authenticate('jwt', { session: false }), (req, res) => {
     Users.findOneAndUpdate(
         { _id: req.params.id },
         { $push: { FavoriteMovies: req.params.MovieId } },
@@ -136,7 +139,7 @@ app.post('/users/:id/movies/:MovieId', (req, res) => {
 });
 
 // DELETE - Allow users to remove a movie from their list of favorites (showing only a text that a movie has been removed);
-app.delete('/users/:id/:MovieId', (req, res) => {
+app.delete('/users/:id/:MovieId', passport.authenticate('jwt', { session: false }), (req, res) => {
     Users.findOneAndUpdate(
         { _id: req.params.id },
         {
@@ -154,7 +157,7 @@ app.delete('/users/:id/:MovieId', (req, res) => {
 });
 
 // DELETE - Allow existing users to deregister (showing only a text that a user email has been removed—more on this later)
-app.delete('/users/:id', (req, res) => {
+app.delete('/users/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
     Users.findOneAndRemove({ _id: req.params.id })
         .then((user) => {
             if (!user) {
@@ -170,12 +173,12 @@ app.delete('/users/:id', (req, res) => {
 });
 
 // GET requests
-app.get('/', (req, res) => {
+app.get('/', passport.authenticate('jwt', { session: false }), (req, res) => {
     res.send('Welcome to MyFlix!');
 });
 
 // READ - Return a list of ALL movies to the user;
-app.get('/movies', (req, res) => {
+app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
     Movies.find()
         .then((users) => {
             res.status(201).json(users);
@@ -187,7 +190,7 @@ app.get('/movies', (req, res) => {
 });
 
 // READ - Return data (description, genre, director, image URL, whether it’s featured or not) about a single movie by title to the user;
-app.get('/movies/:Title', (req, res) => {
+app.get('/movies/:Title', passport.authenticate('jwt', { session: false }), (req, res) => {
     Movies.findOne({ Title: req.params.Title })
         .then((movie) => {
             res.json(movie);
@@ -199,7 +202,7 @@ app.get('/movies/:Title', (req, res) => {
 });
 
 // READ - Return data about a genre (description) by name/title (e.g., “Thriller”);
-app.get('/movies/genre/:GenreName', (req, res) => {
+app.get('/movies/genre/:GenreName', passport.authenticate('jwt', { session: false }), (req, res) => {
     Movies.findOne({ 'Genre.Name': req.params.GenreName })
         .then((movie) => {
             res.json(movie.Genre);
@@ -211,7 +214,7 @@ app.get('/movies/genre/:GenreName', (req, res) => {
 });
 
 // READ - Return data about a director (bio, birth year, death year) by name;
-app.get('/movies/directors/:DirectorName', (req, res) => {
+app.get('/movies/directors/:DirectorName', passport.authenticate('jwt', { session: false }), (req, res) => {
     Movies.findOne({ 'Director.Name': req.params.DirectorName })
         .then((movie) => {
             res.json(movie.Director);
