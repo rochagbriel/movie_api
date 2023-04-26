@@ -128,20 +128,7 @@ app.post('/users',
   Birthday: Date
 }*/
 
-app.put('/users/:id', 
-[
-    check('Username', 'Username is required').isLength({min: 5}),
-    check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
-    check('Password', 'Password is required').not().isEmpty(),
-    check('Email', 'Email does not appear to be valid').isEmail()
-], passport.authenticate('jwt', { session: false }), (req, res) => {
-
-    // Check the validation object for errors
-    let errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-        return res.status(422).json({ errors: errors.array() });
-    }
+app.put('/users/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
 
     Users.findOneAndUpdate(
         { _id: req.params.id },
