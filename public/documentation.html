@@ -12,6 +12,34 @@
         ---------------------
         <h2>Endpoints</h2>
 
+        <h3>Login endpoint</h3>
+        <h4>Description:</h4>
+        <p>This endpoint log the user in</p>
+        <h4>URL:</h4>
+        <p>"/login"</p>
+        <h4>Method Type:</h4>
+        <p>POST</p>
+        <h4>Query Parameters(URL):</h4>
+        <p>SAMPLE: http://localhost:8080/login?Username=pizza&Password=peperoni</p>
+        <h4>Request data format:</h4>
+        <p></p>
+        <h4>Response data format:</h4>
+        <p>SAMPLE:</p>
+        <pre>
+            {
+                "user": {
+                    "_id": "644840c9e76398a4acc20d51",
+                    "Username": "pizza",
+                    "Password": "peperoni",
+                    "Email": "pizza@email.com",
+                    "Birthday": "1990-09-01T22:00:00.000Z",
+                    "FavoriteMovies": [],
+                    "__v": 0
+                },
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDQ4NDBjOWU3NjM5OGE0YWNjMjBkNTEiLCJVc2VybmFtZSI6InBpenphIiwiUGFzc3dvcmQiOiJwZXBlcm9uaSIsIkVtYWlsIjoicGl6emFAZW1haWwuY29tIiwiQmlydGhkYXkiOiIxOTkwLTA5LTAxVDIyOjAwOjAwLjAwMFoiLCJGYXZvcml0ZU1vdmllcyI6W10sIl9fdiI6MCwiaWF0IjoxNjgyNDczOTMzLCJleHAiOjE2ODMwNzg3MzMsInN1YiI6InBpenphIn0.CVW1VlTEAoMCsDqWS3JjwtK25CknebTwxckbFo7cD0E"
+            }
+        </pre>
+
         <h3>Return a list of ALL movies to the user</h3>
         <h4>Description:</h4>
         <p>This endpoint returns a list of all available movies.</p>
