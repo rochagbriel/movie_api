@@ -215,7 +215,7 @@ app.delete('/users/:id', passport.authenticate('jwt', { session: false }), (req,
 });
 
 // GET requests
-app.get('/', passport.authenticate('jwt', { session: false }), (req, res) => {
+app.get('/', (req, res) => {
     res.send('Welcome to MyFlix!');
 });
 
