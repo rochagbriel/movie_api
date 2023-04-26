@@ -169,3 +169,5 @@ Timestamp: Thu Apr 06 2023 17:32:38 GMT+0200 (Central European Summer Time)
 ::1 - - [26/Apr/2023:02:09:50 +0000] "DELETE /users/644840c9e76398a4acc20d51/643da3dbbe406410ca353056 HTTP/1.1" 200 170 "-" "PostmanRuntime/7.32.2"
 ::1 - - [26/Apr/2023:02:10:38 +0000] "DELETE /users/644840c9e76398a4acc20d51 HTTP/1.1" 200 37 "-" "PostmanRuntime/7.32.2"
 ::1 - - [26/Apr/2023:02:10:44 +0000] "DELETE /users/644840c9e76398a4acc20d51 HTTP/1.1" 401 - "-" "PostmanRuntime/7.32.2"
+::1 - - [26/Apr/2023:02:22:04 +0000] "GET /documentation.html HTTP/1.1" 200 10981 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"
+::1 - - [26/Apr/2023:16:30:31 +0000] "GET /documentation.html HTTP/1.1" 304 - "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"
