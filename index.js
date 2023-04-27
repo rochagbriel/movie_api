@@ -137,6 +137,13 @@ app.put('/users/:id', [
 ],
  passport.authenticate('jwt', { session: false }), (req, res) => {
 
+    // Check the validation object for errors
+    let errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+        return res.status(422).json({ errors: errors.array() });
+    }
+
     Users.findOneAndUpdate(
         { _id: req.params.id },
         {
