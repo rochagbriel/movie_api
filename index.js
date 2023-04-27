@@ -4,44 +4,50 @@ const express = require('express'),
     morgan = require('morgan'),
     fs = require('fs'),
     path = require('path');
+
 const { check, validationResult } = require('express-validator');
+
 const mongoose = require('mongoose');
 const Models = require('./models.js');
-const cors = require('cors');
-const passport = require('passport');
-require('./passport');
 
 const Movies = Models.Movie;
 const Users = Models.User;
 
-// Connect to the Database
-mongoose.connect(process.env.CONNECTION_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-});
 // LOCAL DB ADRESS
 // mongoose.connect('mongodb://localhost:27017/cfDB', {
 //     useNewUrlParser: true,
 //     useUnifiedTopology: true,
 // });
 
+mongoose.connect(process.env.CONNECTION_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+});
+
 const app = express();
 
 const bodyParser = require('body-parser'),
     methodOverride = require('method-override');
 
-// Middleware
+// Body Parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+let auth = require('./auth')(app);
+
+const cors = require('cors');
 app.use(cors());
+
+const passport = require('passport');
+require('./passport');
+
 app.use(methodOverride());
+
 // Error-handling Middleware function
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Something broke!');
 });
-
-let auth = require('./auth')(app);
 
 // Create a write stream
 // A 'log.txt' file is created in root directory
@@ -51,8 +57,6 @@ const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {
 
 // Setup the logger
 app.use(morgan('combined', { stream: accessLogStream }));
-
-/* ------------------ROUTES------------------- */
 
 // CREATE - Allow new users to register;
 /* 
@@ -69,15 +73,13 @@ We’ll expect JSON in this format
 app.post(
     '/users',
     [
-        check('Username', 'Username is required')
-            .isLength({ min: 5 }),
-        check('Username','Username contains non alphanumeric characters - not allowed.')
-            .isAlphanumeric(),
-        check('Password', 'Password is required')
-            .not()
-            .isEmpty(),
-        check('Email', 'Email does not appear to be valid')
-            .isEmail(),
+        check('Username', 'Username is required').isLength({ min: 5 }),
+        check(
+            'Username',
+            'Username contains non alphanumeric characters - not allowed.'
+        ).isAlphanumeric(),
+        check('Password', 'Password is required').not().isEmpty(),
+        check('Email', 'Email does not appear to be valid').isEmail(),
     ],
     (req, res) => {
         // Check the validation object for errors
@@ -137,19 +139,17 @@ app.put(
         check('Username', 'Username is required')
             .isLength({ min: 5 })
             .optional(),
-        check('Username','Username contains non alphanumeric characters - not allowed.')
+        check(
+            'Username',
+            'Username contains non alphanumeric characters - not allowed.'
+        )
             .isAlphanumeric()
             .optional(),
-        check('Password', 'Password is required')
-            .not()
-            .isEmpty()
-            .optional(),
+        check('Password', 'Password is required').not().isEmpty().optional(),
         check('Email', 'Email does not appear to be valid')
             .isEmail()
             .optional(),
-        check('Birthday', 'Invalid date format')
-            .isISO8601()
-            .optional(),
+        check('Birthday', 'Invalid date format').isISO8601().optional(),
     ],
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
@@ -315,7 +315,7 @@ app.get(
 
 app.use(express.static('public'));
 
-// Listen for requests
+// listen for requests
 const port = process.env.PORT || 8080;
 app.listen(port, '0.0.0.0', () => {
     console.log('Listening on Port ' + port);
