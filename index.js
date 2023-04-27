@@ -4,15 +4,21 @@ const express = require('express'),
     morgan = require('morgan'),
     fs = require('fs'),
     path = require('path');
-
 const { check, validationResult } = require('express-validator');
-
 const mongoose = require('mongoose');
 const Models = require('./models.js');
+const cors = require('cors');
+const passport = require('passport');
+require('./passport');
 
 const Movies = Models.Movie;
 const Users = Models.User;
 
+// Connect to the Database
+mongoose.connect(process.env.CONNECTION_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+});
 // LOCAL DB ADRESS
 // mongoose.connect('mongodb://localhost:27017/cfDB', {
 //     useNewUrlParser: true,
@@ -29,25 +35,18 @@ const app = express();
 const bodyParser = require('body-parser'),
     methodOverride = require('method-override');
 
-// Body Parser
+// Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-let auth = require('./auth')(app);
-
-const cors = require('cors');
 app.use(cors());
-
-const passport = require('passport');
-require('./passport');
-
 app.use(methodOverride());
-
 // Error-handling Middleware function
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Something broke!');
 });
+
+let auth = require('./auth')(app);
 
 // Create a write stream
 // A 'log.txt' file is created in root directory
@@ -57,6 +56,8 @@ const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {
 
 // Setup the logger
 app.use(morgan('combined', { stream: accessLogStream }));
+
+/* ------------------ROUTES------------------- */
 
 // CREATE - Allow new users to register;
 /* 
@@ -315,7 +316,7 @@ app.get(
 
 app.use(express.static('public'));
 
-// listen for requests
+// Listen for requests
 const port = process.env.PORT || 8080;
 app.listen(port, '0.0.0.0', () => {
     console.log('Listening on Port ' + port);
