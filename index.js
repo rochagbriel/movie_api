@@ -128,7 +128,14 @@ app.post('/users',
   Birthday: Date
 }*/
 
-app.put('/users/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
+app.put('/users/:id', [
+    check('Username', 'Username is required').isLength({min: 5}).optional(),
+    check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric().optional(),
+    check('Password', 'Password is required').not().isEmpty().optional(),
+    check('Email', 'Email does not appear to be valid').isEmail().optional(),
+    check('Birthday', 'Invalid date format').isISO8601().optional()
+],
+ passport.authenticate('jwt', { session: false }), (req, res) => {
 
     Users.findOneAndUpdate(
         { _id: req.params.id },
