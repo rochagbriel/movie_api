@@ -1,10 +1,23 @@
-# MyFlix
+# MyFlix API
 
-The "MyFlix" application is a web app that provides users with access to information about different movies, directors, and genres.
+This is a REST API, which allows registered users to browse movies, add and remove titles from their list of favorites, and update their personal data. The app is built using Node.js, Express.js, MongoDB, and Mongoose.
 
 ## Technologies Used
 
-Node.js
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- Eslint
+
+**The following libraries were also used:**
+
+- Morgan: for logging creation;
+- Body-parser: for easier handling of HTTP requests and responses;
+- Method-override: to allow the use of HTTP methods other than GET and POST;
+- Express-validator: for input data validation;
+- Cors: to allow access from different domains to the API;
+- Passport and Passport-JWT: for token-based authentication.
 
 ## Credits
 
