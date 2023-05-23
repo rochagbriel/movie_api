@@ -22,6 +22,7 @@ This is a REST API, which allows registered users to browse movies, add and remo
 ## Credits
 
 Special thanks to my Tutor Stanley Okwii(CareerFoundry) and my Mentor Faizal Patel(CareerFoundry) for guiding me throughout the development process.
+Film Covers from: https://www.themoviedb.org/
 
 ## Contact
 
