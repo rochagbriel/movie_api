@@ -1,4 +1,4 @@
-# MyFlix API
+# myFlix API
 
 This is a REST API, which allows registered users to browse movies, add and remove titles from their list of favorites, and update their personal data. The app is built using Node.js, Express.js, MongoDB, and Mongoose.
 
